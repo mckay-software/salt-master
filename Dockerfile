@@ -13,7 +13,7 @@ ENTRYPOINT ["/usr/bin/salt-master"]
 CMD ["--log-level=error"]
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
-    apt update && apt install -y wget &&\
+    apt update && apt install -y wget python-pip && pip install progressbar &&\
     wget -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - &&\
     echo "deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main" > /etc/apt/sources.list.d/saltstack.list &&\
     apt update && apt install -y salt-master &&\
